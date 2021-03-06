@@ -1,6 +1,6 @@
 # coursework three
 
-## Redirect in coursework folder
+## Redirect into coursework folder
 ```
 cd coursework
 ```
