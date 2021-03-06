@@ -3,28 +3,134 @@
   <head>
     <title>Routing from FE to BE</title>
     <script src="https://unpkg.com/vue"></script>
+    <link rel="manifest" href="coursework.webmanifest" />
 
     <style>
       .card {
-        border: 1px solid aqua;
+        border: 1px solid #00ffff;
       }
     </style>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("service-worker.js");
+      }
+    </script>
   </head>
 
   <body>
     <div id="app">
-      <ul class="card" v-for="(product, index) in products">
-        <li><h3>Topic: {{product.topic}}</h3></li>
-        <li><h3>Location: {{product.location}}</h3></li>
-        <li><h3>Price: {{product.price}}</h3></li>
-      </ul>
+      <button v-on:click="showCheckout">Checkout</button>
+
+      <div v-if="showProduct">
+        <lesson-component
+          v-for="product in products"
+          v-bind:key="product.id"
+          v-bind:product="product"
+          v-bind:index="products.findIndex((p) => p.id === product.id)"
+          v-on:cart-thing="addToCart"
+        ></lesson-component>
+      </div>
+
+      <div v-else>
+        <cart-component
+        v-for="item of cart"
+        v-bind:key="item.id"
+        v-bind:prod="cart"
+        >
+      </cart-component>
+      </div>
     </div>
 
     <script type="text/javascript">
+      Vue.component("lesson-component", {
+        props: ["product", "index"],
+        template: ` 
+        <ul class="card">
+            <li><h3>Topic: {{product.topic}}</h3></li>
+            <li><h3>Location: {{product.location}}</h3></li>
+            <li><h3>Price: {{product.price}}</h3></li>
+            <button v-on:click="$emit('cart-thing', index)">Add to cart</button>
+          </ul>
+        `,
+      });
+
+      Vue.component("cart-component", {
+        props: {prod: Array},
+        // 
+        template: `
+        <ul class="card">
+          <li><h3>Topic: {{prod.topic}}</h3></li>
+          <li><h3>Location: {{prod.location}}</h3></li>
+          <li><h3>Price: {{prod.price}}</h3></li>
+      </ul>
+      `,
+      });
+      // let order
       const lesson = new Vue({
+        props: {prod: Object},
         el: "#app",
-        data: { products: []},
+        data () {
+          return {
+          products: [],
+          cart: [],
+          newProduct: {},
+          showProduct: true,
+          }
+        },
+        methods: {
+          addToCart: function (id) {
+            try {
+              console.log(id);
+              let tempCart = this.cart;
+              this.cart = [];
+              tempCart.push(this.products[id]);
+              this.cart = tempCart;
+              console.log()
+            } catch (err) {
+              console.log(err);
+            }
+          },
+          showCheckout: function () {
+            this.showProduct = this.showProduct ? false : true; 
+            order = JSON.parse(JSON.stringify(this.cart))
+            for(x of order){
+              console.log(x.topic)
+            }
+            console.log(order)
+            // let order = Object.keys(this.cart).map((item) => {
+            //   return{
+            //     topic: this.cart[item].topic,
+            //     price: this.cart[item].price,
+            //     location: this.cart[item].location
+            //   }
+            // }) 
+            //  this.newProduct = Object.keys(order)
+            // // for(x of order){
+            // //   console.log(x.topic)
+            // // }
+            // console.log(this.newProduct)
+            // console.log(typeof(order))
+            //  parsedobj = JSON.parse(JSON.stringify(this.cart))
+            //  for(item of parsedobj) {
+            //    this.newProduct
+            //    console.log(item);
+            //    console.log(this.newProduct)
+            //  }
+             
+          },
+        },
+
+        // computed: {
+        //   cartItem: function() {
+        //     parsedobj = JSON.parse(JSON.stringify(this.cart))
+        //     console.log(parsedobj)
+        //     return parsedobj
+        //   }
+        // },
+
         created: function () {
+          // this.prod = this.cart
           // this function will be run automatically
           // when creating the Vue instance
           fetch("http://localhost:3000/lessons").then(function (res) {

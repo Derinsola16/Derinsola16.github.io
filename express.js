@@ -11,10 +11,10 @@ app.use(function(req, res, next) {
 
 app.get("/lessons",function(req,res){
     const data = [
-        { topic: 'math', location: 'London', price: 100 },
-        { topic: 'math', location: 'Liverpool', price: 80 },
-        { topic: 'math', location: 'Oxford', price: 90 },
-        { topic: 'math', location: 'Bristol', price: 120 },
+        { topic: 'math', location: 'London', id: 101, price: 100 },
+        { topic: 'English', location: 'Liverpool', id: 102, price: 80 },
+        { topic: 'Verbal', location: 'Oxford', id: 103, price: 90 },
+        { topic: 'Crs', location: 'Bristol', id: 104, price: 120 },
     ]
 
     res.send(data)
