@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="showCheckout">Checkout</button>
+    <button @click="showCheckout" class="btn btn-outline-success btn-lg mb-5">Checkout</button>
     <lesson
     v-if="showProduct" 
     :product="products"
@@ -32,7 +32,7 @@ export default {
     addToCart: function(id) {
       try {
         let tempCart = this.cart;
-        this.cart = [];
+        // this.cart = [];
         tempCart.push(this.products[id]);
         this.cart = tempCart;
       } catch (err) {

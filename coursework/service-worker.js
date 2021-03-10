@@ -1,9 +1,9 @@
 var cacheName = 'onlinestore-v1';
 var cacheFiles = [
-    'index.html',
+    'src/App.vue',
     'express.js',
     'coursework.webmanifest',
-    'images/bookshop.jpg',
+    'src/assets/bookshop.jpg',
     
 ];
 

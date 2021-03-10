@@ -1,20 +1,20 @@
 <template>
   <div class="hello">
     <ul
-      class="card"
+      class="list-group mb-5"
       v-for="item in product"
       :key="item.id"
     >
-      <li>
+      <li class="list-group-item">
         <h3>Topic: {{ item.topic }}</h3>
       </li>
-      <li>
+      <li class="list-group-item">
         <h3>Location: {{ item.location }}</h3>
       </li>
-      <li>
+      <li class="list-group-item">
         <h3>Price: {{ item.price }}</h3>
       </li>
-      <button @click="emitCustom">Add to cart</button>
+      <button @click="emitCustom" class="btn btn-primary">Add to cart</button>
     </ul>
   </div>
 </template>
@@ -25,10 +25,6 @@ export default {
    props: {product: Array},
   data() {
     return {
-      // products: [],
-      // cart: [],
-      // newProduct: {},
-      // showProduct: true,
     };
   },
   methods: {
@@ -38,7 +34,7 @@ export default {
         let index = this.product.findIndex((p) => p.id === item.id)
         this.$emit('cart-thing', index)
 
-        // console.log(item.topic)
+        console.log(item)
       }
     }
   }

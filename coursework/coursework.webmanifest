@@ -10,7 +10,7 @@
 
     }
   ],
-  "start_url": "index.html",
+  "start_url": "src/App.vue",
   "display": "fullscreen",
   "background_color": "#00ffff"
 }
