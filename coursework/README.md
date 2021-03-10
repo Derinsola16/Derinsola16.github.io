@@ -1,5 +1,10 @@
 # coursework
 
+## Enter Coursework
+
+```
+cd coursework
+```
 ## Project setup
 ```
 npm install

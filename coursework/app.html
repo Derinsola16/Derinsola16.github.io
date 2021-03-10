@@ -93,11 +93,11 @@
           },
           showCheckout: function () {
             this.showProduct = this.showProduct ? false : true; 
-            order = JSON.parse(JSON.stringify(this.cart))
-            for(x of order){
-              console.log(x.topic)
-            }
-            console.log(order)
+            // order = JSON.parse(JSON.stringify(this.cart))
+            // for(x of order){
+            //   console.log(x.topic)
+            // }
+            // console.log(order)
             // let order = Object.keys(this.cart).map((item) => {
             //   return{
             //     topic: this.cart[item].topic,
@@ -120,14 +120,6 @@
              
           },
         },
-
-        // computed: {
-        //   cartItem: function() {
-        //     parsedobj = JSON.parse(JSON.stringify(this.cart))
-        //     console.log(parsedobj)
-        //     return parsedobj
-        //   }
-        // },
 
         created: function () {
           // this.prod = this.cart
