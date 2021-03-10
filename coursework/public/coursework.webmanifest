@@ -4,13 +4,13 @@
   "description": "Online store",
   "icons": [
     {
-      "src": "assets/bookshop.jpg",
+      "src": "../src/assets/bookshop.jpg",
       "sizes": "512px,  512px",
       "type": "image/jpg"
 
     }
   ],
-  "start_url": "src/App.vue",
+  "start_url": "../src/App.vue",
   "display": "fullscreen",
   "background_color": "#00ffff"
 }
