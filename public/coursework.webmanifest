@@ -4,8 +4,8 @@
   "description": "Online store",
   "icons": [
     {
-      "src": "../src/assets/bookshop.jpg",
-      "sizes": "512px,  512px",
+      "src": "assets/bookshop.jpg",
+      "sizes": "{512} x {512}",
       "type": "image/jpg"
 
     }
